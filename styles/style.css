@@ -1,0 +1,120 @@
+:root {
+    --first-background-dark: #2B2B2B;
+    --second-background-dark: #242424;
+    --text-color-dark: #FFFFFF;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; 
+    background-color: var(--first-background-dark); 
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; 
+}
+
+.head {
+    display: flex;
+    position: relative; 
+    background-color: var(--second-background-dark);
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 5px 20px;
+    width: auto;
+    align-items: center;
+    z-index: 100; 
+    margin: 20px;
+}
+
+.user-info {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.user-info img {
+    border-radius: 100px;
+}
+
+.user-details {
+    font-family: Montserrat, system-ui;
+    color: var(--text-color-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-details .name {
+    font-weight: 700;
+    font-size: 0.6em;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+}
+
+.user-details .id {
+    font-weight: 400;
+    font-size: 0.5em;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+footer {
+    display: flex;
+    position: relative;  
+    justify-content: space-between;
+    background-color: var(--second-background-dark);
+    border-radius: 15px;
+    padding: 10px 20px;
+    z-index: 100;     
+    margin: 20px;
+}
+
+.footer-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 8px;
+    text-transform: uppercase;
+    color: var(--text-color-dark);
+    padding: 0px 10px;
+    gap: 2px;
+}
+
+.footer-button img {
+    height: 24px;
+    width: 24px;
+}
+
+.filter-button {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border-width: 2px;
+    border: var(--text-color-dark) 2px solid;
+}
+
+main {
+    flex-grow: 1;
+}
+
+#map {
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px); 
+    height: calc(100% - 20px); 
+    z-index: 1; 
+    background-color: bisque;
+    border-radius: 15px;
+}
