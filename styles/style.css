@@ -136,7 +136,7 @@ footer{
     border-radius: 15px 15px 0px 0px;
     padding: 15px 20px;
     /* width: 100%; */
-    max-height: 350px;
+    max-height: max-content;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
     z-index: 101;
@@ -214,4 +214,18 @@ footer{
 
 .marketplace-button.active{
     border: var(--text-color-dark) 1px solid;
+}
+
+.filter-select{
+    font-weight: 700;
+    font-size: 8px;
+    padding: 10px;
+    opacity: 50%;
+    background: var(--second-background-dark) url('/assets/icons/expand_down.svg') no-repeat right 10px center;
+    border: var(--text-color-dark) 1px solid;
+    border-radius: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;  
+    width: 100%;
 }
