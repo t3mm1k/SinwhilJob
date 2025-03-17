@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="../styles/style.css">  
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
   <script async src="https://api-maps.yandex.ru/v3/?apikey=00b80c2a-8bf3-41fd-a5da-640243e7e720&lang=ru_RU"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <!-- <script src="../scripts/map.js"></script> -->
 </head>
 <body>
@@ -29,39 +30,40 @@
 
   <footer>
     <div class="filters-container">
+        <!-- <span></span> -->
         <div class="filter-section">
-          <button class="toggle-button active"><span class="circle active"></span>Постоянная работа</button>
-          <button class="toggle-button"><span class="circle"></span>Временная работа</button>
+          <button class="toggle-button"><span class="circle"></span>Постоянная работа</button>
+          <button class="toggle-button active"><span class="circle active"></span>Временная работа</button>
         </div>
   
         <div class="filter-section">
-          <button class="toggle-button">1 день</button>
-          <button class="toggle-button">До 1 недели</button>
-          <button class="toggle-button">До 1 месяца</button>
-          <button class="toggle-button">Более 1 месяца</button>
+          <button class="toggle-button active px-10 py-5">1 день</button>
+          <button class="toggle-button px-10 py-5">До 1 недели</button>
+          <button class="toggle-button px-10 py-5">До 1 месяца</button>
+          <button class="toggle-button px-10 py-5">Более 1 месяца</button>
         </div>
-        
-        <h4>Маркетплейсы</h4>
+        <span class="separator"></span>
+        <h4 class="m-0 font-bold margin-0 opacity-50">Маркетплейсы</h4>
   
         <div class="filter-section marketplaces">
             <div class="marketplace-logos">
-              <button type="button" data-filter="wildberries">
+              <button class="toggle-button marketplace-button" type="button" data-filter="wildberries">
                   <img src="../assets/icons/wb-logo.svg" alt="Wildberries">
                   <span>Wildberries</span>
               </button>
-              <button type="button" data-filter="yandex">
+              <button class="toggle-button marketplace-button" type="button" data-filter="yandex">
                   <img src="../assets/icons/yandex-market-logo.svg" alt="Я.Маркет">
                   <span>Я.Маркет</span>
               </button>
-              <button type="button" data-filter="ozon">
+              <button class="toggle-button marketplace-button" type="button" data-filter="ozon">
                   <img src="../assets/icons/ozon-logo.svg" alt="Ozon">
                   <span>OZON</span>
               </button> 
-              <button type="button" data-filter="avito">
+              <button class="toggle-button marketplace-button" type="button" data-filter="avito">
                   <img src="../assets/icons/avito-logo.svg" alt="Avito">
                   <span>AVITO</span>
               </button>
-               <button type="button" data-filter="boxberry">
+               <button class="toggle-button marketplace-button" type="button" data-filter="boxberry">
                   <img src="../assets/icons/boxberry-logo.svg" alt="Boxberry">
                   <span>Boxberry</span>
               </button>
