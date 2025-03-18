@@ -1,0 +1,47 @@
+.head {
+    display: flex;
+    position: relative;
+    background-color: var(--second-background-dark);
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 5px 20px;
+    width: auto;
+    align-items: center;
+    z-index: 100;
+    margin: 20px;
+}
+
+.user-info {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.user-info img {
+    border-radius: 100px;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-details .name {
+    font-size: 0.6em;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.user-details .id {
+    font-size: 0.5em;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+/* .name{
+  font-weight: 700;
+  text-transform: uppercase;
+} */
+/* .id{
+    font-weight: 400;
+} */
