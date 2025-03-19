@@ -8,7 +8,8 @@
   <script src="https://api-maps.yandex.ru/v3/?apikey=0d17beb4-a2ec-4c18-8215-4d6648dff7a8&lang=ru_RU"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <script src="../scripts/map.js"></script>
+  <script src="../scripts/map.js" type="module"></script>
+  <script src="../scripts/search.js" type="module"></script>
   <script src="../scripts/filters.js"></script>
 </head>
 <body>
@@ -31,6 +32,17 @@
   </main>
 
   <footer>
+    <div class="search-container">
+      <div class="search-prompt">
+        <p>ЦСКА</p>
+        <p>Большая кольцевая линия</p>
+      </div>
+      <div class="search-prompt">
+        <p>ЦСКА</p>
+        <p>Большая кольцевая линия</p>
+      </div>
+      <input type="text" class="search-input" placeholder="Поиск">
+    </div>
     <div class="filters-container">
         <!-- <span></span> -->
         <div class="filter-section">
@@ -50,23 +62,23 @@
         <div class="filter-section marketplaces">
             <div class="marketplace-logos">
               <button class="toggle-button marketplace-button" type="button" data-filter="wildberries">
-                  <img src="../assets/icons/wb-logo.svg" alt="Wildberries">
+                  <img src="../assets/icons/wb-logo.png" alt="Wildberries">
                   <span>Wildberries</span>
               </button>
               <button class="toggle-button marketplace-button" type="button" data-filter="yandex">
-                  <img src="../assets/icons/yandex-market-logo.svg" alt="Я.Маркет">
+                  <img src="../assets/icons/yandex-market-logo.png" alt="Я.Маркет">
                   <span>Я.Маркет</span>
               </button>
               <button class="toggle-button marketplace-button" type="button" data-filter="ozon">
-                  <img src="../assets/icons/ozon-logo.svg" alt="Ozon">
+                  <img src="../assets/icons/ozon-logo.png" alt="Ozon">
                   <span>OZON</span>
               </button> 
               <button class="toggle-button marketplace-button" type="button" data-filter="avito">
-                  <img src="../assets/icons/avito-logo.svg" alt="Avito">
+                  <img src="../assets/icons/avito-logo.png" alt="Avito">
                   <span>AVITO</span>
               </button>
                <button class="toggle-button marketplace-button" type="button" data-filter="boxberry">
-                  <img src="../assets/icons/boxberry-logo.svg" alt="Boxberry">
+                  <img src="../assets/icons/boxberry-logo.png" alt="Boxberry">
                   <span>Boxberry</span>
               </button>
             </div>
@@ -95,15 +107,15 @@
       </div>
       <div class="footer-buttons top-radius">
           <div class="footer-button">
-              <img src="../assets/icons/wallet.svg" alt="Кошелек">
-              <span>Баланс</span>
+              <img src="../assets/icons/search.svg" alt="Поиск">
+              <span>Поиск</span>
           </div>
           <div class="footer-button filter-button">
               <img src="../assets/icons/filter_big.svg" alt="Фильтр">
               <span>Фильтры</span>
           </div>
           <div class="footer-button">
-              <img src="../assets/icons/user_circle.svg" alt="">
+              <img src="../assets/icons/user_circle.svg" alt="Профиль">
               <span>Профиль</span>
           </div>
       </div>

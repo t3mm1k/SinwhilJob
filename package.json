@@ -1,6 +1,7 @@
 {
     "devDependencies": {
         "autoprefixer": "^10.4.21",
+        "cssnano": "^7.0.6",
         "http-server": "14.1.1",
         "postcss": "^8.5.3",
         "tailwindcss": "^4.0.14"
@@ -9,6 +10,7 @@
         "start": "npx http-server ."
     },
     "dependencies": {
-        "@yandex/ymaps3-clusterer": "^0.0.1"
+        "@yandex/ymaps3-clusterer": "^0.0.1",
+        "@yandex/ymaps3-default-ui-theme": "^0.0.19"
     }
 }

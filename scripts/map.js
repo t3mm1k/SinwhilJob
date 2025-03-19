@@ -1,3 +1,4 @@
+import { setupSearch } from "./search.js";
 
 async function initMap() {
     await ymaps3.ready;
@@ -10,24 +11,8 @@ async function initMap() {
         YMapMarker,
         YMapListener
     } = ymaps3;
+      
     
-
-    // ymaps3.import.loaders.unshift(async (pkg) => {
-    //     if (!pkg.includes('@yandex/ymaps3-clusterer')) {
-    //       return;
-    //     }
-      
-    //     if (location.href.includes('localhost')) {
-    //       await ymaps3.import.script(`/dist/index.js`);
-    //     } else {
-    //       await ymaps3.import.script(`https://unpkg.com/${pkg}/dist/index.js`);
-    //     }
-      
-    //     Object.assign(ymaps3, window[`${pkg}`]);
-    //     return window[`${pkg}`];
-    //   });
-      
-
     const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1');
 
 
@@ -54,11 +39,11 @@ async function initMap() {
   
       let logoSrc = '';
       switch (marketplace) {
-        case 'Wildberries': logoSrc = '../assets/icons/wb-logo.svg'; break;
-        case 'Yandex': logoSrc = '../assets/icons/yandex-market-logo.svg'; break;
-        case 'Ozon': logoSrc = '../assets/icons/ozon-logo.svg'; break;
-        case 'Avito': logoSrc = '../assets/icons/avito-logo.svg'; break;
-        case 'Boxberry': logoSrc = '../assets/icons/boxberry-logo.svg'; break;
+        case 'Wildberries': logoSrc = '../assets/icons/wb-logo.png'; break;
+        case 'Yandex': logoSrc = '../assets/icons/yandex-market-logo.png'; break;
+        case 'Ozon': logoSrc = '../assets/icons/ozon-logo.png'; break;
+        case 'Avito': logoSrc = '../assets/icons/avito-logo.png'; break;
+        case 'Boxberry': logoSrc = '../assets/icons/boxberry-logo.png'; break;
         default: logoSrc = '../assets/icons/logo-dark.svg'; 
       }
   
@@ -90,27 +75,47 @@ async function initMap() {
       return new YMapMarker({ coordinates, source: 'my-source' }, clusterElement);
     }
   
-    const data = [
-      [37.6173, 55.7558, "Wildberries", "От 5500/в день"],
-      [37.6273, 55.7658, "Yandex", "От 5500/в день"],
-      [37.5, 55.6, "Ozon", "От 5500/в день"],
-      [37.7, 55.8, "Avito", "От 5500/в день"],
-      [37.4, 55.9, "Boxberry", "От 5500/в день"],
-      [37.6373, 55.7758, "Wildberries", "От 5500/в день"],
-      [37.6473, 55.7858, "Yandex", "От 5500/в день"],
-      [37.51, 55.61, "Ozon", "От 5500/в день"],
-      [37.71, 55.81, "Avito", "От 5500/в день"],
-      [37.41, 55.91, "Boxberry", "От 5500/в день"]
-    ];
-  
-  
-    const points = data.map((item, i) => ({
-      type: 'Feature',
-      id: i,
-      geometry: { coordinates: [item[0], item[1]] },
-      properties: { marketplace: item[2], adInfo: item[3] }
-    }));
-  
+    const data = {
+      "Москва": [
+          { coordinates: [37.6173, 55.7558], marketplace: "Wildberries", adInfo: "От 5500/в день", vacancy_type: "full_time" },
+          { coordinates: [37.6273, 55.7658], marketplace: "Yandex", adInfo: "От 5500/в день", vacancy_type: "part_time" },
+          { coordinates: [37.5, 55.6], marketplace: "Ozon", adInfo: "От 5500/в день", vacancy_type: "part_time" },
+          { coordinates: [37.7, 55.8], marketplace: "Avito", adInfo: "От 5500/в день", vacancy_type: "part_time" },
+          { coordinates: [37.4, 55.9], marketplace: "Boxberry", adInfo: "От 5500/в день" },
+          { coordinates: [37.4, 55.9], marketplace: "Wildberries", adInfo: "От 5500/в день", vacancy_type: "full_time" },
+          { coordinates: [37.6473, 55.7858], marketplace: "Yandex", adInfo: "От 5500/в день", vacancy_type: "full_time" },
+          { coordinates: [37.51, 55.61], marketplace: "Boxberry", adInfo: "От 5500/в день", vacancy_type: "full_time" },
+          { coordinates: [37.71, 55.81], marketplace: "Avito", adInfo: "От 5500/в день", vacancy_type: "part_time" },
+          { coordinates: [37.41, 55.81], marketplace: "Boxberry", adInfo: "От 5500/в день", vacancy_type: "full_time" }
+      ]
+  };
+
+  function jitterCoordinates(coordinates, jitterAmount = 0.0001) {
+      const [lng, lat] = coordinates;
+      const jitteredLng = lng + (Math.random() - 0.5) * 2 * jitterAmount;
+      const jitteredLat = lat + (Math.random() - 0.5) * 2 * jitterAmount;
+      return [jitteredLng, jitteredLat];
+  }
+  const points = data["Москва"].map((item, i) => {
+      const processedCoordinates = [];
+      const existingPoint = processedCoordinates.find(coord => coord[0] === item.coordinates[0] && coord[1] === item.coordinates[1]);
+      const coords = existingPoint ? jitterCoordinates(item.coordinates) : item.coordinates;
+      processedCoordinates.push(coords);
+
+      return {
+          type: 'Feature',
+          id: i,
+          geometry: {
+              type: 'Point',
+              coordinates: coords
+          },
+          properties: {
+              marketplace: item.marketplace,
+              adInfo: item.adInfo,
+              vacancy_type: item.vacancy_type
+          }
+      };
+  });
   
     const clusterer = new YMapClusterer({
       method: clusterByGrid({ gridSize: 48 }),
@@ -140,6 +145,8 @@ async function initMap() {
   });
 
   map.addChild(mapListener);
+
+  setupSearch(map, dataSource);
 }
   
 document.addEventListener('DOMContentLoaded', function () {

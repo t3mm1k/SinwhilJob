@@ -1,0 +1,35 @@
+.search-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    z-index: 200;
+    background-color: var(--second-background-dark);
+    border-radius: 15px;
+    padding: 10px;
+}
+.search-prompt {
+    display: flex;
+    flex-direction: column;
+    grid-area: 4px;
+    border-bottom: rgba(255, 255, 255, 0.5) 1px solid;
+    padding: 5px 0px;
+    
+}
+.search-prompt p{
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.search-prompt p:last-child{
+    opacity: 0.5;
+    font-size: 0.5em;
+}
+
+.search-container input {
+    border-radius: 10px;
+    padding: 10px;
+    gap: 10px;
+    border-width: 1px;
+    margin-top: 10px;
+}

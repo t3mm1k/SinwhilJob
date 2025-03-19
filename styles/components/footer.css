@@ -50,5 +50,5 @@ footer{
 
 .filter-button.active img {
     filter: var(--icons-filter-dark);
-
+    
 }

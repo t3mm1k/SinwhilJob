@@ -47,6 +47,13 @@
     /* white-space: nowrap; */
 }
 
+.marketplace-button img {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+}
+
+
 .toggle-button.active {
     background-color: var(--text-color-dark);
     color: var(--second-background-dark);
@@ -60,8 +67,10 @@
 }
 
 .circle.active {
-    border: var(--second-background-dark) 1px solid;
+    outline: var(--second-background-dark) 2px solid;
     background-color: var(--text-color-dark);
+    width: 11px;
+    height: 11px;
 }
 
 .marketplace-logos {
