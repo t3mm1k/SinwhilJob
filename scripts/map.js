@@ -7,7 +7,8 @@ async function initMap() {
         YMapDefaultSchemeLayer,
         YMapFeatureDataSource,
         YMapLayer,
-        YMapMarker
+        YMapMarker,
+        YMapListener
     } = ymaps3;
     
 
@@ -19,7 +20,6 @@ async function initMap() {
         if (location.href.includes('localhost')) {
           await ymaps3.import.script(`/dist/index.js`);
         } else {
-          // You can use another CDN
           await ymaps3.import.script(`https://unpkg.com/${pkg}/dist/index.js`);
         }
       
@@ -28,7 +28,7 @@ async function initMap() {
       });
       
 
-      const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1');
+    const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1');
 
 
     const map = new YMap(
@@ -48,7 +48,6 @@ async function initMap() {
     map.addChild(new YMapLayer({ source: 'my-source', type: 'markers', zIndex: 1800 }));
   
   
-    // Функция для создания HTML-элемента маркера на основе marketplace
     function createMarketplaceMarker(marketplace, adInfo) {
       const markerElement = document.createElement('div');
       markerElement.classList.add('custom-marker');
@@ -60,21 +59,20 @@ async function initMap() {
         case 'Ozon': logoSrc = '../assets/icons/ozon-logo.svg'; break;
         case 'Avito': logoSrc = '../assets/icons/avito-logo.svg'; break;
         case 'Boxberry': logoSrc = '../assets/icons/boxberry-logo.svg'; break;
-        default: logoSrc = '../assets/icons/logo-dark.svg'; // Fallback
+        default: logoSrc = '../assets/icons/logo-dark.svg'; 
       }
   
       markerElement.innerHTML = `
         <img src="${logoSrc}" alt="${marketplace}">
         <div class="marker-context">
-          <span>${marketplace}</span>
-          <span>${adInfo}</span>
+          <p>${marketplace}</p>
+          <p>${adInfo}</p>
         </div>
       `;
       return markerElement;
     }
   
   
-    // Функция для рендеринга обычных маркеров
     const markerRenderer = (feature) => {
       const { marketplace, adInfo } = feature.properties;
       const coordinates = feature.geometry.coordinates;
@@ -84,7 +82,6 @@ async function initMap() {
     };
   
   
-    // Функция рендеринга кластера
     function clusterRenderer(coordinates, features) {
       const count = features.length;
       const clusterElement = document.createElement('div');
@@ -93,22 +90,20 @@ async function initMap() {
       return new YMapMarker({ coordinates, source: 'my-source' }, clusterElement);
     }
   
-    // Предполагаемый массив данных
     const data = [
       [37.6173, 55.7558, "Wildberries", "От 5500/в день"],
-      [37.6273, 55.7658, "Yandex", "Доставка сегодня"],
-      [37.5, 55.6, "Ozon", "Срочная вакансия"],
-      [37.7, 55.8, "Avito", "Подработка на выходные"],
-      [37.4, 55.9, "Boxberry", "Гибкий график"],
-      [37.6373, 55.7758, "Wildberries", "От 6000/в день"],
-      [37.6473, 55.7858, "Yandex", "Доставка завтра"],
-      [37.51, 55.61, "Ozon", "Супер работа"],
-      [37.71, 55.81, "Avito", "Подработка на будни"],
-      [37.41, 55.91, "Boxberry", "Удобный график"]
+      [37.6273, 55.7658, "Yandex", "От 5500/в день"],
+      [37.5, 55.6, "Ozon", "От 5500/в день"],
+      [37.7, 55.8, "Avito", "От 5500/в день"],
+      [37.4, 55.9, "Boxberry", "От 5500/в день"],
+      [37.6373, 55.7758, "Wildberries", "От 5500/в день"],
+      [37.6473, 55.7858, "Yandex", "От 5500/в день"],
+      [37.51, 55.61, "Ozon", "От 5500/в день"],
+      [37.71, 55.81, "Avito", "От 5500/в день"],
+      [37.41, 55.91, "Boxberry", "От 5500/в день"]
     ];
   
   
-    // Преобразование данных в формат GeoJSON Feature
     const points = data.map((item, i) => ({
       type: 'Feature',
       id: i,
@@ -117,7 +112,6 @@ async function initMap() {
     }));
   
   
-    // Создаем кластеризатор
     const clusterer = new YMapClusterer({
       method: clusterByGrid({ gridSize: 48 }),
       features: points,
@@ -126,8 +120,28 @@ async function initMap() {
     });
   
     map.addChild(clusterer);
-  }
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    initMap();
+    
+    const mapListener = new YMapListener({
+      layer: 'any', 
+      onUpdate: (event) => {
+          const zoom = event.location.zoom;
+          const markers = document.querySelectorAll('.custom-marker');
+
+          markers.forEach(marker => {
+              if (!marker.classList.contains('cluster-circle')) {
+                  if (zoom < 12) {
+                      marker.classList.add('icon-only');
+                  } else {
+                      marker.classList.remove('icon-only');
+                  }
+              }
+          });
+      }
   });
+
+  map.addChild(mapListener);
+}
+  
+document.addEventListener('DOMContentLoaded', function () {
+  initMap();
+});

@@ -19,15 +19,30 @@ main {
 .custom-marker {
     display: flex;
     align-items: center;
-    background-color: var(--second-background-color); 
+    background-color: var(--second-background-dark);
     border-radius: 10px;
     padding: 5px;
     gap: 5px;
-    /* border: 1px solid #ccc; */
+    width: max-content;
+    white-space: nowrap; 
+    transition: width 0.3s ease; /*  Плавный переход для ширины (необязательно) */
+}
+
+
+.custom-marker.icon-only {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.custom-marker.icon-only .marker-context {
+    display: none;
 }
 
 .custom-marker img {
-    width: 24px; 
+    width: 24px;
     height: 24px;
 }
 
@@ -35,10 +50,21 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 0;
 }
 
-.marker-context span {
-    font-size: 12px; 
+.marker-context p {
+    font-size: 10px; 
+    color: var(--text-color-dark); 
+    white-space: nowrap; 
+    font-weight: 700;
+    font-family: Montserrat;
+    text-transform: uppercase;
+}
+
+.marker-context p:last-child{
+    font-size: 8px;
+    font-weight: 400;
 }
 
 .cluster-circle {
@@ -48,9 +74,10 @@ main {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #007bff; /* Цвет кластера */
-    color: white;
+    background-color: var(--second-background-dark);
+    color: var(--text-color-dark);
+    font-family: Montserrat;
     font-size: 14px;
-    font-weight: bold;
-    border: 2px solid white;
+    font-weight: 500;
+    /* border: 2px solid white; */
 }
