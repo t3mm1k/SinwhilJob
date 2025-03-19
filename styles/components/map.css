@@ -25,7 +25,7 @@ main {
     gap: 5px;
     width: max-content;
     white-space: nowrap; 
-    transition: width 0.3s ease; /*  Плавный переход для ширины (необязательно) */
+    transition: width 0.3s ease;
 }
 
 
