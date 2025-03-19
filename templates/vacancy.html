@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Макет приложения</title>
+  <link rel="stylesheet" href="../styles/style.css">  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://api-maps.yandex.ru/v3/?apikey=0d17beb4-a2ec-4c18-8215-4d6648dff7a8&lang=ru_RU"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <script src="../scripts/map.js"></script>
+  <script src="../scripts/filters.js"></script>
+</head>
+<body>
+  <header class="head">
+    <div class="logo">
+      <img src="../assets/icons/logo-dark.svg" alt="Логотип">
+    </div>
+    <div class="user-info">
+      <img src="../assets/images/user-avatar.png" alt="Аватар пользователя">
+      <div class="user-details">
+        <span class="name font-bold uppercase">Артём</span>
+        <span class="id font-normal">ID: 741342267</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="map">
+    </div>
+  </main>
+
+  <footer>
+    <div class="filters-container">
+        <!-- <span></span> -->
+        <div class="filter-section">
+          <button class="toggle-button"><span class="circle"></span>Постоянная работа</button>
+          <button class="toggle-button active"><span class="circle active"></span>Временная работа</button>
+        </div>
+  
+        <div class="filter-section times">
+          <button class="toggle-button active">1 день</button>
+          <button class="toggle-button">До 1 недели</button>
+          <button class="toggle-button">До 1 месяца</button>
+          <button class="toggle-button">Более 1 месяца</button>
+        </div>
+        <span class="separator"></span>
+        <h4 class="m-0 font-bold margin-0 opacity-50">Маркетплейсы</h4>
+  
+        <div class="filter-section marketplaces">
+            <div class="marketplace-logos">
+              <button class="toggle-button marketplace-button" type="button" data-filter="wildberries">
+                  <img src="../assets/icons/wb-logo.svg" alt="Wildberries">
+                  <span>Wildberries</span>
+              </button>
+              <button class="toggle-button marketplace-button" type="button" data-filter="yandex">
+                  <img src="../assets/icons/yandex-market-logo.svg" alt="Я.Маркет">
+                  <span>Я.Маркет</span>
+              </button>
+              <button class="toggle-button marketplace-button" type="button" data-filter="ozon">
+                  <img src="../assets/icons/ozon-logo.svg" alt="Ozon">
+                  <span>OZON</span>
+              </button> 
+              <button class="toggle-button marketplace-button" type="button" data-filter="avito">
+                  <img src="../assets/icons/avito-logo.svg" alt="Avito">
+                  <span>AVITO</span>
+              </button>
+               <button class="toggle-button marketplace-button" type="button" data-filter="boxberry">
+                  <img src="../assets/icons/boxberry-logo.svg" alt="Boxberry">
+                  <span>Boxberry</span>
+              </button>
+            </div>
+        </div>
+  
+        <span class="separator"></span>
+
+        <div class="filter-section">
+          <select class="filter-select">
+            <option value="">Выберите город</option>
+            <option value="moscow">Москва</option>
+            <option value="spb">Санкт-Петербург</option>
+          </select>
+        </div>
+
+        <span class="separator"></span>
+  
+        <div class="filter-section">
+          <select class="filter-select">
+            <option value="">Выберите должность</option>
+            <option value="courier">Оператор ПВЗ</option>
+            <option value="packer">Управляющий</option>
+          </select>
+        </div>
+        <span class="separator"></span>
+      </div>
+      <div class="footer-buttons top-radius">
+          <div class="footer-button">
+              <img src="../assets/icons/wallet.svg" alt="Кошелек">
+              <span>Баланс</span>
+          </div>
+          <div class="footer-button filter-button">
+              <img src="../assets/icons/filter_big.svg" alt="Фильтр">
+              <span>Фильтры</span>
+          </div>
+          <div class="footer-button">
+              <img src="../assets/icons/user_circle.svg" alt="">
+              <span>Профиль</span>
+          </div>
+      </div>
+  </footer>
+</body>
+</html>

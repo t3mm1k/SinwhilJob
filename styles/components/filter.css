@@ -66,18 +66,21 @@
 
 .marketplace-logos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 5px;
     width: 100%;
 }
 
 .marketplace-button {
     border-width: 0;
+    padding: 5px;
 }
 
 .marketplace-button.active {
-    border: var(--text-color-dark) 1px solid;
+    outline: var(--text-color-dark) 1px solid;
+    background-color: var(--second-background-dark);
+    color: var(--text-color-dark);
 }
 
 .filter-select {

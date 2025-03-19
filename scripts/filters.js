@@ -28,28 +28,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    //  // Добавляем обработчики для кнопок-переключателей
-    // const toggleButtons = document.querySelectorAll('.toggle-button');
-    // toggleButtons.forEach(button => {
-    //     button.addEventListener('click', function() {
-    //         // Снимаем класс active со всех кнопок в той же секции
-    //         const parentSection = button.closest('.filter-section');
-    //         const parentMarketplaces = button.closest('.marketplaces');
-        
-    //         if (parentSection && !parentMarketplaces) {
-    //             parentSection.querySelectorAll('.toggle-button').forEach(btn => {
-    //                 btn.classList.remove('active');
-    //                 const circle = btn.querySelector('.circle');
-    //                 if(circle){
-    //                      circle.classList.remove('active');
-    //                 }
-    //             });
-    //         }
-    //         button.classList.add('active');
-    //         const circle = button.querySelector('.circle');
-    //             if(circle){
-    //                 circle.classList.add('active');
-    //         }
-    //     });
-    // });
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const parentSection = button.closest('.filter-section');
+            const parentMarketplaces = button.closest('.marketplaces');
+            if (parentMarketplaces) {
+                button.classList.toggle('active');
+                return
+            }
+            if (parentSection && !parentMarketplaces) {
+                parentSection.querySelectorAll('.toggle-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    const circle = btn.querySelector('.circle');
+                    if(circle){
+                         circle.classList.remove('active');
+                    }
+                });
+            }
+            button.classList.add('active');
+            const circle = button.querySelector('.circle');
+                if(circle){
+                    circle.classList.add('active');
+            }
+        });
+    });
 });

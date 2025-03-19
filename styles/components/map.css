@@ -30,11 +30,16 @@ main {
 
 
 .custom-marker.icon-only {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     overflow: hidden;
     background-color: transparent;
+}
+
+.custom-marker.icon-only img{
+    width: 32px;
+    height: 32px; 
 }
 
 .custom-marker.icon-only .marker-context {

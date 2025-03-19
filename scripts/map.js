@@ -12,20 +12,20 @@ async function initMap() {
     } = ymaps3;
     
 
-    ymaps3.import.loaders.unshift(async (pkg) => {
-        if (!pkg.includes('@yandex/ymaps3-clusterer')) {
-          return;
-        }
+    // ymaps3.import.loaders.unshift(async (pkg) => {
+    //     if (!pkg.includes('@yandex/ymaps3-clusterer')) {
+    //       return;
+    //     }
       
-        if (location.href.includes('localhost')) {
-          await ymaps3.import.script(`/dist/index.js`);
-        } else {
-          await ymaps3.import.script(`https://unpkg.com/${pkg}/dist/index.js`);
-        }
+    //     if (location.href.includes('localhost')) {
+    //       await ymaps3.import.script(`/dist/index.js`);
+    //     } else {
+    //       await ymaps3.import.script(`https://unpkg.com/${pkg}/dist/index.js`);
+    //     }
       
-        Object.assign(ymaps3, window[`${pkg}`]);
-        return window[`${pkg}`];
-      });
+    //     Object.assign(ymaps3, window[`${pkg}`]);
+    //     return window[`${pkg}`];
+    //   });
       
 
     const {YMapClusterer, clusterByGrid} = await ymaps3.import('@yandex/ymaps3-clusterer@0.0.1');
