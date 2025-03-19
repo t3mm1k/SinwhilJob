@@ -15,3 +15,42 @@ main {
     border-radius: 15px;
     overflow: hidden;
 }
+
+.custom-marker {
+    display: flex;
+    align-items: center;
+    background-color: var(--second-background-color); 
+    border-radius: 10px;
+    padding: 5px;
+    gap: 5px;
+    /* border: 1px solid #ccc; */
+}
+
+.custom-marker img {
+    width: 24px; 
+    height: 24px;
+}
+
+.marker-context {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.marker-context span {
+    font-size: 12px; 
+}
+
+.cluster-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff; /* Цвет кластера */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid white;
+}

@@ -7,8 +7,5 @@
     },
     "scripts": {
         "start": "npx http-server ."
-    },
-    "dependencies": {
-        "@tailwindcss/cli": "^4.0.14"
     }
 }
